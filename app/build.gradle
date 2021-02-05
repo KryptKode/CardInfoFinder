@@ -18,16 +18,20 @@ android {
         versionName "1.0"
 
         vectorDrawables.useSupportLibrary true
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            debuggable = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     buildFeatures {
         viewBinding true
     }
@@ -57,6 +61,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation "androidx.vectordrawable:vectordrawable:1.1.0"
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01'
+    implementation "androidx.multidex:multidex:2.0.1"
 
     //Lifecycle
     def lifeCycleVersion = '2.2.0'
@@ -90,6 +95,10 @@ dependencies {
     implementation "com.squareup.moshi:moshi:$moshiVersion"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
+
+
+
+    implementation "com.jakewharton.timber:timber:4.7.1"
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.6'
 
