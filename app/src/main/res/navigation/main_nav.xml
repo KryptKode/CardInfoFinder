@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_navigation">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/walkThroughFragment">
 
 
+    <fragment
+        android:id="@+id/walkThroughFragment"
+        android:name="com.kryptkode.cardinfofinder.ui.walkthrough.WalkThroughFragment"
+        android:label="WalkThroughFragment"
+        tools:layout="@layout/fragment_walkthrough">
+        <action
+            android:id="@+id/action_walkThroughFragment_to_cardInputModeFragment"
+            app:destination="@id/cardInputModeFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/cardInputModeFragment"
+        android:name="com.kryptkode.cardinfofinder.ui.cardinputmode.CardInputModeFragment"
+        android:label="CardInputModeFragment"
+        tools:layout="@layout/fragment_card_input_mode">
+        <action
+            android:id="@+id/action_cardInputModeFragment_to_ocrInputFragment"
+            app:destination="@id/ocrInputFragment" />
+        <action
+            android:id="@+id/action_cardInputModeFragment_to_manualInputFragment"
+            app:destination="@id/manualInputFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/manualInputFragment"
+        android:name="com.kryptkode.cardinfofinder.ui.manualinput.ManualInputFragment"
+        android:label="ManualInputFragment"
+        tools:layout="@layout/fragment_manual_input">
+        <action
+            android:id="@+id/action_manualInputFragment_to_cardInfoFragment"
+            app:destination="@id/cardInfoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ocrInputFragment"
+        android:name="com.kryptkode.cardinfofinder.ui.ocrinput.OcrInputFragment"
+        android:label="OcrInputFragment"
+        tools:layout="@layout/fragment_ocr_input">
+        <action
+            android:id="@+id/action_ocrInputFragment_to_cardInfoFragment"
+            app:destination="@id/cardInfoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cardInfoFragment"
+        android:name="com.kryptkode.cardinfofinder.ui.cardinfo.CardInfoFragment"
+        android:label="CardInfoFragment"
+        tools:layout="@layout/fragment_card_info" />
 </navigation>

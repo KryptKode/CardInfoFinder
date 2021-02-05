@@ -2,8 +2,9 @@ package com.kryptkode.cardinfofinder.data.dispatcher
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 
-class AppDispatchersImpl : AppDispatchers {
+class AppDispatchersImpl @Inject constructor(): AppDispatchers {
     override val default: CoroutineDispatcher
         get() = Dispatchers.Default
 
