@@ -7,8 +7,9 @@ import com.kryptkode.cardinfofinder.data.service.BinListService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import javax.inject.Inject
 
-class GetCardInfoUseCase(
+class GetCardInfoUseCase @Inject constructor(
     private val binListService: BinListService,
     private val dispatchers: AppDispatchers
 ) {
@@ -16,7 +17,7 @@ class GetCardInfoUseCase(
     fun execute(query: String): Flow<DataState<CardInfo>> = flow {
         emit(DataState.Loading)
         try {
-            val result = binListService.searchBooks(query)
+            val result = binListService.getCardInfo(query)
             emit(DataState.Success(CardInfo()))
         } catch (e: Exception) {
             emit(DataState.Error(e.localizedMessage ?: "An error occurred"))

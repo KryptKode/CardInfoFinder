@@ -7,7 +7,7 @@ import retrofit2.http.Path
 interface BinListService {
 
     @GET("{cardNumber}")
-    suspend fun searchBooks(
+    suspend fun getCardInfo(
         @Path("cardNumber") cardNumber: String,
     ): CardInfoResponse
 }
