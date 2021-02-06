@@ -1,13 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/app_name"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/page_indicator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.rd.PageIndicatorView
+        android:id="@+id/page_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@id/barrier_buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_pager"
+        app:piv_animationType="thinWorm"
+        app:piv_dynamicCount="true"
+        app:piv_interactiveAnimation="true"
+        app:piv_padding="12dp"
+        app:piv_radius="5dp"
+        app:piv_scaleFactor="0.4"
+        app:piv_selectedColor="?colorPrimary" />
+
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="next_button,skip_button" />
+
+    <Button
+        android:id="@+id/next_button"
+        style="@style/Widget.App.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/walkthrough_next"
+        app:icon="@drawable/ic_arrow_forward"
+        app:iconGravity="end"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd" />
+
+    <Button
+        android:id="@+id/skip_button"
+        style="@style/Widget.App.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/walkthrough_skip"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart" />
+
+    <include layout="@layout/guidelines" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

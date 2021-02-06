@@ -63,6 +63,8 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01'
     implementation "androidx.multidex:multidex:2.0.1"
 
+    implementation "com.romandanylyk:pageindicatorview:1.0.3"
+
     //Lifecycle
     def lifeCycleVersion = '2.2.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifeCycleVersion"
@@ -75,6 +77,9 @@ dependencies {
     def navVersion = "2.3.3"
     implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navVersion"
+
+    //DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0-alpha06"
 
     //Image Loading
     def glideVersion = "4.11.0"

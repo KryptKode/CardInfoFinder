@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_h1">22sp</dimen>
+    <dimen name="text_size_h2">20sp</dimen>
+    <dimen name="text_size_h3">18sp</dimen>
+
+    <dimen name="text_size_body">22sp</dimen>
+    <dimen name="walkthrough_margin_top">16dp</dimen>
+</resources>

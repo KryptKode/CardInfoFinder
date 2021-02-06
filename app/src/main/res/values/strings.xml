@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Card Info Finder</string>
+    <string name="walkthrough_next">Next</string>
+    <string name="walkthrough_skip">Skip</string>
+    <string name="walkthrough_image_cd">WalkThrough Image</string>
+    <string name="walkthrough_done">Done</string>
 </resources>
