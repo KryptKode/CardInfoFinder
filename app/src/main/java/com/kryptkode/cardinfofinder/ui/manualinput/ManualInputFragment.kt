@@ -30,10 +30,11 @@ class ManualInputFragment : Fragment(R.layout.fragment_manual_input) {
         }
 
         binding.navBtn.setRightButtonListener {
+            binding.cardNumberInput.error = null
             if (binding.cardNumberEditText.isValid) {
                 navigator.toCardInfo(binding.cardNumberEditText.text.toString())
             } else {
-                toastHelper.showMessage(getString(R.string.card_number_invalid_message))
+                binding.cardNumberInput.error = getString(R.string.card_number_invalid_message)
             }
         }
     }

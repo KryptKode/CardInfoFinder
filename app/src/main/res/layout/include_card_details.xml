@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_details"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/title_card_details"
+            android:textAppearance="@style/TextAppearance.App.ListPrimary"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toTopOf="@id/guidelineTop" />
+
+
+        <ImageView
+            android:id="@+id/image_card"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/image_card_cd"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintVertical_bias="0"
+            app:srcCompat="@drawable/bt_ic_card" />
+
+        <TextView
+            android:id="@+id/tv_brand"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textAppearance="@style/TextAppearance.App.Main"
+            app:layout_constraintEnd_toStartOf="@id/tv_scheme"
+            app:layout_constraintStart_toEndOf="@id/image_card"
+            app:layout_constraintTop_toTopOf="@id/image_card"
+            tools:text="mastercard" />
+
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextAppearance.App.ListPrimary"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            app:layout_constraintEnd_toStartOf="@id/tv_scheme"
+            app:layout_constraintStart_toEndOf="@id/image_card"
+            app:layout_constraintTop_toBottomOf="@id/tv_brand"
+            tools:text="Type: debit" />
+
+
+        <TextView
+            android:id="@+id/tv_scheme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextAppearance.App.ListPrimary"
+            app:layout_constraintBottom_toBottomOf="@id/image_card"
+            app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
+            app:layout_constraintTop_toTopOf="@id/image_card"
+            tools:text="Debit" />
+
+        <include layout="@layout/guidelines" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
+

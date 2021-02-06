@@ -6,5 +6,5 @@ data class CardInfoViewState(
     val loading: Boolean = false,
     val error: Boolean = false,
     val errorMessage: String = "",
-    val books: CardInfo = CardInfo()
+    val cardInfo: CardInfo = CardInfo()
 )

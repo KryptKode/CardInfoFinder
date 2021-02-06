@@ -47,7 +47,7 @@
         <item name="android:fontFamily">@font/lato</item>
     </style>
 
-    <style name="TextAppearance.App.Main" parent="TextAppearance.MaterialComponents.Subtitle2" >
+    <style name="TextAppearance.App.Main" parent="TextAppearance.MaterialComponents.Headline6" >
         <item name="fontFamily">@font/lato</item>
         <item name="android:fontFamily">@font/lato</item>
     </style>

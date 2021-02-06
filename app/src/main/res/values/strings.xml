@@ -21,4 +21,15 @@
     <string name="bt_card_number_invalid">Card number is invalid</string>
     <string name="action_next">Next</string>
     <string name="card_number_invalid_message">Please enter a valid card number</string>
+    <string name="title_card_country">Country</string>
+    <string name="image_location_cd">Location icon</string>
+    <string name="title_card_bank">Bank</string>
+    <string name="image_bank_cd">Bank icon</string>
+    <string name="title_card_details">Card Info</string>
+    <string name="image_card_cd">Card icon</string>
+    <string name="back_icon_cd">Back icon</string>
+    <string name="error_img_cd">Error icon</string>
+    <string name="retry_btn_text">Retry</string>
+    <string name="card_info_loading_message">Card info is loading…</string>
+    <string name="currency_label">Currency: %s</string>
 </resources>

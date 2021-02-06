@@ -24,6 +24,7 @@ class CardResponseMapperTest {
 
         val result = sut.mapToEntity(response)
 
+        assertThat(result.scheme).isEqualTo(response.scheme)
         assertThat(result.brand).isEqualTo(response.brand)
         assertThat(result.type).isEqualTo(response.type)
         assertThat(result.bank).isEqualTo(bankResponseMapper.mapToEntity(response.bank))

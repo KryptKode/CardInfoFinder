@@ -11,6 +11,7 @@ class CardResponseMapper @Inject constructor(
 
     override fun mapToEntity(response: CardInfoResponse): CardInfo {
         return CardInfo(
+            response.scheme,
             response.brand,
             response.type,
             bankMapper.mapToEntity(response.bank),

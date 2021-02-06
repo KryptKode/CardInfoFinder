@@ -41,7 +41,7 @@ class CardInfoViewModel @Inject constructor(
             is DataState.Success -> oldState.copy(
                 loading = false,
                 error = false,
-                books = dataState.data
+                cardInfo = dataState.data
             )
         }
     }
