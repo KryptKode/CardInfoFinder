@@ -51,15 +51,15 @@
                 android:layout_height="match_parent">
 
 
-                <View
+                <com.kryptkode.cardinfofinder.util.customview.card.CreditCardView
                     android:id="@+id/card_view"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="@drawable/background_input_mode"
                     app:layout_constraintDimensionRatio="h,1:0.5"
                     app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                     app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                    app:layout_constraintTop_toTopOf="@id/guidelineTop" />
+                    app:layout_constraintTop_toTopOf="@id/guidelineTop"
+                    tools:card_number="5500 0000 0000 0004" />
 
 
                 <include

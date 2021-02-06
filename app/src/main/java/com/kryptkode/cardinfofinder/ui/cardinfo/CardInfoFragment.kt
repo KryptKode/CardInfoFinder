@@ -36,6 +36,8 @@ class CardInfoFragment : Fragment(R.layout.fragment_card_info) {
         binding.swipeRefresh.isEnabled = false
         binding.swipeRefresh.isRefreshing = false
 
+        binding.cardView.setCardNumber(cardNumber)
+
         binding.retryButton.setOnClickListener {
 
         }

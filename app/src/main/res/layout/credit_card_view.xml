@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:layout_height="150dp"
+    tools:layout_width="match_parent"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <View
+        android:id="@+id/card_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/card_bg"
+        android:contentDescription="@string/credit_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="w,3:2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/card_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:lines="1"
+        android:textAppearance="@style/TextAppearance.App.H2"
+        android:textColor="@color/white"
+        android:textIsSelectable="true"
+        app:autoSizeMaxTextSize="18sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@id/card_bg"
+        app:layout_constraintEnd_toEndOf="@id/card_bg"
+        app:layout_constraintStart_toStartOf="@id/card_bg"
+        app:layout_constraintTop_toTopOf="@id/card_bg"
+        app:layout_constraintVertical_bias="0.5"
+        tools:text="5500 0000 0000 0004" />
+
+
+    <ImageView
+        android:id="@+id/card_type_logo"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/credit_card_logo"
+        android:scaleType="fitEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/card_bg"
+        app:layout_constraintEnd_toEndOf="@+id/card_bg"
+        app:layout_constraintTop_toBottomOf="@+id/card_number"
+        app:layout_constraintVertical_bias="1"
+        app:srcCompat="@drawable/bt_ic_mastercard" />
+
+</merge>

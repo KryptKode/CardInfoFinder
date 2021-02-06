@@ -32,4 +32,6 @@
     <string name="retry_btn_text">Retry</string>
     <string name="card_info_loading_message">Card info is loading…</string>
     <string name="currency_label">Currency: %s</string>
+    <string name="credit_card">Credit card</string>
+    <string name="credit_card_logo">Credit card logo</string>
 </resources>
