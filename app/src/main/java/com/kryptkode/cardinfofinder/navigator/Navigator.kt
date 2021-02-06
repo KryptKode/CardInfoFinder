@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import com.kryptkode.cardinfofinder.R
 import com.kryptkode.cardinfofinder.data.usecase.SeenWalkThroughUseCase
+import com.kryptkode.cardinfofinder.ui.cardinfo.CardInfoFragment
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
@@ -38,6 +39,10 @@ class Navigator @Inject constructor(
         }
     }
 
+    fun navigateUp() {
+        navController.navigateUp()
+    }
+
     fun walkThroughToNext() {
         activity.lifecycleScope.launchWhenCreated {
             seenWalkThroughUseCase.setSeenWalkthrough(true)
@@ -51,5 +56,12 @@ class Navigator @Inject constructor(
 
     fun inputModeToOcrInput() {
         navController.navigate(R.id.action_cardInputModeFragment_to_ocrInputFragment)
+    }
+
+    fun toCardInfo(cardNumber: String) {
+        navController.navigate(
+            R.id.action_manualInputFragment_to_cardInfoFragment,
+            CardInfoFragment.makeArguments(cardNumber)
+        )
     }
 }

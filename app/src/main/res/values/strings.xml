@@ -10,4 +10,15 @@
     <string name="input_mode_title">Select input mode</string>
     <string name="input_mode_manual_cd">Keyboard icon</string>
     <string name="input_mode_scan_cd">OCR icon</string>
+
+
+    <string name="bt_cvv">CVV</string>
+    <string name="bt_cvc">CVC</string>
+    <string name="bt_cid">CID</string>
+    <string name="bt_cvn">CVN</string>
+
+    <string name="bt_card_number_required">Card number is required</string>
+    <string name="bt_card_number_invalid">Card number is invalid</string>
+    <string name="action_next">Next</string>
+    <string name="card_number_invalid_message">Please enter a valid card number</string>
 </resources>

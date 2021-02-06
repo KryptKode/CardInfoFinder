@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/button_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+
+    <Button
+        android:id="@+id/left_btn"
+        style="@style/Widget.App.BackButton"
+        android:layout_width="62dp"
+        android:layout_height="0dp"
+        android:minHeight="?actionBarSize"
+        app:layout_constraintBottom_toBottomOf="@id/right_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/right_btn" />
+
+
+    <Button
+        android:id="@+id/right_btn"
+        style="@style/Widget.App.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:gravity="center"
+        android:minHeight="?actionBarSize"
+        android:text="@string/action_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/left_btn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</merge>
