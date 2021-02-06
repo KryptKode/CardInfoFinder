@@ -1,222 +1,188 @@
-package com.kryptkode.cardinfofinder.util.customview.card;
+package com.kryptkode.cardinfofinder.util.customview.card
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.text.TextUtils;
-import android.util.AttributeSet;
-import android.view.Gravity;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-
-import androidx.annotation.Nullable;
-
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-import com.kryptkode.cardinfofinder.R;
-import com.kryptkode.cardinfofinder.util.VibrationHelper;
-
-import static android.os.Build.VERSION.SDK_INT;
-import static android.os.Build.VERSION_CODES.JELLY_BEAN_MR1;
+import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.Rect
+import android.text.TextUtils
+import android.util.AttributeSet
+import android.view.Gravity
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import com.kryptkode.cardinfofinder.R
+import com.kryptkode.cardinfofinder.util.VibrationHelper
 
 /**
- * Parent {@link android.widget.EditText} for storing and displaying error states.
+ * Parent [android.widget.EditText] for storing and displaying error states.
  */
-public class ErrorEditText extends TextInputEditText {
+open class ErrorEditText : TextInputEditText {
+    private var mErrorAnimator: Animation? = null
 
-    private Animation mErrorAnimator;
-    private boolean mError;
-    private boolean mOptional;
+    /**
+     * @return the current error state of the [android.widget.EditText]
+     */
+    var isError = false
+        private set
+    /**
+     * @return If this [ErrorEditText] is optional or not. See [.setOptional].
+     */
 
-    public ErrorEditText(Context context) {
-        super(context);
-        init();
+    /**
+     * Set this [ErrorEditText] as optional. Optional fields are always valid and show no
+     * error message.
+     *
+     * @param isOptional `true` to set this [ErrorEditText] to optional, `false`
+     * to set it to required.
+     */
+    var isOptional = false
+
+    constructor(context: Context?) : super(context!!) {
+        init()
     }
 
-    public ErrorEditText(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
+    constructor(context: Context?, attrs: AttributeSet?) : super(context!!, attrs) {
+        init()
     }
 
-    public ErrorEditText(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        init();
+    constructor(context: Context?, attrs: AttributeSet?, defStyle: Int) : super(context!!, attrs, defStyle) {
+        init()
     }
 
-    private void init() {
-        mErrorAnimator = AnimationUtils.loadAnimation(getContext(), R.anim.bt_error_animation);
-        mError = false;
-        setupRTL();
+    private fun init() {
+        mErrorAnimator = AnimationUtils.loadAnimation(context, R.anim.bt_error_animation)
+        isError = false
+        setupRTL()
     }
 
-    @Override
-    public void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
-        super.onTextChanged(text, start, lengthBefore, lengthAfter);
+    public override fun onTextChanged(text: CharSequence, start: Int, lengthBefore: Int, lengthAfter: Int) {
+        super.onTextChanged(text, start, lengthBefore, lengthAfter)
         if (lengthBefore != lengthAfter) {
-            setError(null);
+            setError(null)
         }
     }
 
-    @Override
-    protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
-        super.onFocusChanged(focused, direction, previouslyFocusedRect);
-        if(!focused && !isValid() && !TextUtils.isEmpty(getText())) {
-            setError(getErrorMessage());
+    override fun onFocusChanged(focused: Boolean, direction: Int, previouslyFocusedRect: Rect?) {
+        super.onFocusChanged(focused, direction, previouslyFocusedRect)
+        if (!focused && !isValid && !TextUtils.isEmpty(text)) {
+            setError(errorMessage)
         }
     }
 
     /**
-     * Sets the hint on the {@link TextInputLayout} if this view is a child of a {@link TextInputLayout}, otherwise
-     * sets the hint on this {@link android.widget.EditText}.
+     * Sets the hint on the [TextInputLayout] if this view is a child of a [TextInputLayout], otherwise
+     * sets the hint on this [android.widget.EditText].
      *
      * @param hint The string resource to use as the hint.
      */
-    public void setFieldHint(int hint) {
-        setFieldHint(getContext().getString(hint));
+    fun setFieldHint(hint: Int) {
+        setFieldHint(context.getString(hint))
     }
 
     /**
-     * Sets the hint on the {@link TextInputLayout} if this view is a child of a {@link TextInputLayout}, otherwise
-     * sets the hint on this {@link android.widget.EditText}.
+     * Sets the hint on the [TextInputLayout] if this view is a child of a [TextInputLayout], otherwise
+     * sets the hint on this [android.widget.EditText].
      *
      * @param hint The string value to use as the hint.
      */
-    public void setFieldHint(String hint) {
-        if (getTextInputLayoutParent() != null) {
-            getTextInputLayoutParent().setHint(hint);
+    fun setFieldHint(hint: String?) {
+        if (textInputLayoutParent != null) {
+            textInputLayoutParent!!.hint = hint
         } else {
-            setHint(hint);
+            setHint(hint)
         }
     }
 
     /**
      * Request focus for the next view.
      */
-    @SuppressWarnings("WrongConstant")
-    public View focusNextView() {
-        if (getImeActionId() == EditorInfo.IME_ACTION_GO) {
-            return null;
+    @SuppressLint("WrongConstant")
+    fun focusNextView(): View? {
+        if (imeActionId == EditorInfo.IME_ACTION_GO) {
+            return null
         }
-
-        View next;
-        try {
-            next = focusSearch(View.FOCUS_FORWARD);
-        } catch (IllegalArgumentException e) {
+        val next: View? = try {
+            focusSearch(FOCUS_FORWARD)
+        } catch (e: IllegalArgumentException) {
             // View.FOCUS_FORWARD results in a crash in some versions of Android
             // https://github.com/braintree/braintree_android/issues/20
-            next = focusSearch(View.FOCUS_DOWN);
+            focusSearch(FOCUS_DOWN)
         }
-        if (next != null && next.requestFocus()) {
-            return next;
-        }
-
-        return null;
+        return if (next != null && next.requestFocus()) {
+            next
+        } else null
     }
 
     /**
-     * Set this {@link ErrorEditText} as optional. Optional fields are always valid and show no
-     * error message.
+     * Controls the error state of this [ErrorEditText] and sets a visual indication that the
+     * [ErrorEditText] contains an error.
      *
-     * @param optional {@code true} to set this {@link ErrorEditText} to optional, {@code false}
-     *                             to set it to required.
+     * @param errorMessage the error message to display to the user. `null` will remove any error message displayed.
      */
-    public void setOptional(boolean optional) {
-        mOptional = optional;
-    }
-
-    /**
-     * @return If this {@link ErrorEditText} is optional or not. See {@link #setOptional(boolean)}.
-     */
-    public boolean isOptional() {
-        return mOptional;
-    }
-
-    /**
-     * @return the current error state of the {@link android.widget.EditText}
-     */
-    public boolean isError() {
-        return mError;
-    }
-
-    /**
-     * Controls the error state of this {@link ErrorEditText} and sets a visual indication that the
-     * {@link ErrorEditText} contains an error.
-     *
-     * @param errorMessage the error message to display to the user. {@code null} will remove any error message displayed.
-     */
-    public void setError(@Nullable String errorMessage) {
-        mError = !TextUtils.isEmpty(errorMessage);
-
-        TextInputLayout textInputLayout = getTextInputLayoutParent();
+    fun setError(errorMessage: String?) {
+        isError = !TextUtils.isEmpty(errorMessage)
+        val textInputLayout = textInputLayoutParent
         if (textInputLayout != null) {
-            textInputLayout.setErrorEnabled(!TextUtils.isEmpty(errorMessage));
-            textInputLayout.setError(errorMessage);
+            textInputLayout.isErrorEnabled = !TextUtils.isEmpty(errorMessage)
+            textInputLayout.error = errorMessage
         }
-
-        if (mErrorAnimator != null && mError) {
-            startAnimation(mErrorAnimator);
-            VibrationHelper.vibrate(getContext(), 10);
+        if (mErrorAnimator != null && isError) {
+            startAnimation(mErrorAnimator)
+            VibrationHelper.vibrate(context, 10)
         }
     }
 
     /**
      * Override this method validation logic
      *
-     * @return {@code true}
+     * @return `true`
      */
-    public boolean isValid() {
-        return true;
-    }
+    open val isValid: Boolean
+        get() = true
 
     /**
      * Override this method to display error messages
      *
-     * @return {@link String} error message to display.
+     * @return [String] error message to display.
      */
-    public String getErrorMessage() {
-        return null;
-    }
+    open val errorMessage: String?
+        get() = null
 
     /**
-     * Check if the {@link ErrorEditText} is valid and set the correct error state and visual
+     * Check if the [ErrorEditText] is valid and set the correct error state and visual
      * indication on it.
      */
-    public void validate() {
-        if (isValid() || isOptional()) {
-            setError(null);
+    fun validate() {
+        if (isValid || isOptional) {
+            setError(null)
         } else {
-            setError(getErrorMessage());
+            setError(errorMessage)
         }
     }
 
     /**
      * Attempt to close the soft keyboard. Will have no effect if the keyboard is not open.
      */
-    public void closeSoftKeyboard() {
-        ((InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE))
-                .hideSoftInputFromWindow(getWindowToken(), 0);
+    fun closeSoftKeyboard() {
+        (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+            .hideSoftInputFromWindow(windowToken, 0)
     }
 
     /**
-     * @return the {@link TextInputLayout} parent if present, otherwise {@code null}.
+     * @return the [TextInputLayout] parent if present, otherwise `null`.
      */
-    @Nullable
-    public TextInputLayout getTextInputLayoutParent() {
-        if (getParent() != null && getParent().getParent() instanceof TextInputLayout) {
-            return (TextInputLayout) getParent().getParent();
-        }
+    val textInputLayoutParent: TextInputLayout?
+        get() = if (parent != null && parent.parent is TextInputLayout) {
+            parent.parent as TextInputLayout
+        } else null
 
-        return null;
-    }
-
-    private void setupRTL() {
-        if (SDK_INT >= JELLY_BEAN_MR1) {
-            if (getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
-                setTextDirection(View.TEXT_DIRECTION_LTR);
-                setGravity(Gravity.END);
-            }
+    private fun setupRTL() {
+        if (resources.configuration.layoutDirection == LAYOUT_DIRECTION_RTL) {
+            textDirection = TEXT_DIRECTION_LTR
+            gravity = Gravity.END
         }
     }
 }

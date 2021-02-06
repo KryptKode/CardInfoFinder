@@ -1,204 +1,180 @@
-package com.kryptkode.cardinfofinder.util.customview.card;
+package com.kryptkode.cardinfofinder.util.customview.card
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.text.Editable;
-import android.text.InputFilter;
-import android.text.InputFilter.LengthFilter;
-import android.text.InputType;
-import android.text.Spanned;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.text.method.TransformationMethod;
-import android.util.AttributeSet;
-
-import androidx.core.widget.TextViewCompat;
-
-import com.kryptkode.cardinfofinder.R;
-
+import android.content.Context
+import android.graphics.Rect
+import android.text.Editable
+import android.text.InputFilter
+import android.text.InputFilter.LengthFilter
+import android.text.InputType
+import android.text.Spanned
+import android.text.TextUtils
+import android.text.TextWatcher
+import android.text.method.TransformationMethod
+import android.util.AttributeSet
+import androidx.core.widget.TextViewCompat
+import com.kryptkode.cardinfofinder.R
+import com.kryptkode.cardinfofinder.util.customview.card.CardType.Companion.forCardNumber
 
 /**
- * An {@link android.widget.EditText} that displays Card icons based on the number entered.
+ * An [android.widget.EditText] that displays Card icons based on the number entered.
  */
-public class CardNumberEditText extends ErrorEditText implements TextWatcher {
-
-    public interface OnCardTypeChangedListener {
-        void onCardTypeChanged(CardType cardType);
+class CardNumberEditText : ErrorEditText, TextWatcher {
+    interface OnCardTypeChangedListener {
+        fun onCardTypeChanged(cardType: CardType?)
     }
 
-    private boolean mDisplayCardIcon = true;
-    private boolean mMask = false;
-    private CardType mCardType;
-    private OnCardTypeChangedListener mOnCardTypeChangedListener;
-    private TransformationMethod mSavedTranformationMethod;
+    private var mDisplayCardIcon = true
+    private var mMask = false
 
-    public CardNumberEditText(Context context) {
-        super(context);
-        init();
+    /**
+     * @return The [CardType] currently entered in
+     * the [android.widget.EditText]
+     */
+    var cardType: CardType? = null
+        private set
+    private var mOnCardTypeChangedListener: OnCardTypeChangedListener? = null
+    private var mSavedTranformationMethod: TransformationMethod? = null
+
+    constructor(context: Context?) : super(context) {
+        init()
     }
 
-    public CardNumberEditText(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+        init()
     }
 
-    public CardNumberEditText(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        init();
+    constructor(context: Context?, attrs: AttributeSet?, defStyle: Int) : super(context, attrs, defStyle) {
+        init()
     }
 
-    private void init() {
-        setInputType(InputType.TYPE_CLASS_NUMBER);
-        setCardIcon(R.drawable.bt_ic_unknown);
-        addTextChangedListener(this);
-        updateCardType();
-        mSavedTranformationMethod = getTransformationMethod();
+    private fun init() {
+        inputType = InputType.TYPE_CLASS_NUMBER
+        setCardIcon(R.drawable.bt_ic_unknown)
+        addTextChangedListener(this)
+        updateCardType()
+        mSavedTranformationMethod = transformationMethod
     }
 
     /**
-     * Enable or disable showing card type icons as part of the {@link CardNumberEditText}. Defaults to
-     * {@code true}.
+     * Enable or disable showing card type icons as part of the [CardNumberEditText]. Defaults to
+     * `true`.
      *
-     * @param display {@code true} to display card type icons, {@code false} to never display card
-     *                            type icons.
+     * @param display `true` to display card type icons, `false` to never display card
+     * type icons.
      */
-    public void displayCardTypeIcon(boolean display) {
-        mDisplayCardIcon = display;
-
+    fun displayCardTypeIcon(display: Boolean) {
+        mDisplayCardIcon = display
         if (!mDisplayCardIcon) {
-            setCardIcon(-1);
+            setCardIcon(-1)
         }
     }
 
     /**
-     * @return The {@link CardType} currently entered in
-     * the {@link android.widget.EditText}
-     */
-    public CardType getCardType() {
-        return mCardType;
-    }
-
-    /**
-     * @param mask if {@code true}, all but the last four digits of the card number will be masked when
-     * focus leaves the card field. Uses {@link CardNumberTransformation}, transforming the number from
+     * @param mask if `true`, all but the last four digits of the card number will be masked when
+     * focus leaves the card field. Uses [CardNumberTransformation], transforming the number from
      * something like "4111111111111111" to "•••• 1111".
      */
-    public void setMask(boolean mask) {
-        mMask = mask;
+    fun setMask(mask: Boolean) {
+        mMask = mask
     }
 
-    @Override
-    protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
-        super.onFocusChanged(focused, direction, previouslyFocusedRect);
-
+    override fun onFocusChanged(focused: Boolean, direction: Int, previouslyFocusedRect: Rect?) {
+        super.onFocusChanged(focused, direction, previouslyFocusedRect)
         if (focused) {
-            unmaskNumber();
-
-            if (getText().toString().length() > 0) {
-                setSelection(getText().toString().length());
+            unmaskNumber()
+            if (text.toString().length > 0) {
+                setSelection(text.toString().length)
             }
-        } else if (mMask && isValid()) {
-            maskNumber();
+        } else if (mMask && isValid) {
+            maskNumber()
         }
     }
 
     /**
-     * Receive a callback when the {@link CardType} changes
-     * @param listener to be called when the {@link CardType}
-     *  changes
+     * Receive a callback when the [CardType] changes
+     * @param listener to be called when the [CardType]
+     * changes
      */
-    public void setOnCardTypeChangedListener(OnCardTypeChangedListener listener) {
-        mOnCardTypeChangedListener = listener;
+    fun setOnCardTypeChangedListener(listener: OnCardTypeChangedListener?) {
+        mOnCardTypeChangedListener = listener
     }
 
-    @Override
-    public void afterTextChanged(Editable editable) {
-        Object[] paddingSpans = editable.getSpans(0, editable.length(), SpaceSpan.class);
-        for (Object span : paddingSpans) {
-            editable.removeSpan(span);
+    override fun afterTextChanged(editable: Editable) {
+        val paddingSpans = editable.getSpans(0, editable.length, SpaceSpan::class.java)
+        for (span in paddingSpans) {
+            editable.removeSpan(span)
         }
-
-        updateCardType();
-        setCardIcon(mCardType.getFrontResource());
-
-        addSpans(editable, mCardType.getSpaceIndices());
-
-        if (mCardType.getMaxCardLength() == getSelectionStart()) {
-            validate();
-
-            if (isValid()) {
-                focusNextView();
+        updateCardType()
+        setCardIcon(cardType!!.frontResource)
+        addSpans(editable, cardType!!.spaceIndices)
+        if (cardType!!.maxCardLength == selectionStart) {
+            validate()
+            if (isValid) {
+                focusNextView()
             } else {
-                unmaskNumber();
+                unmaskNumber()
             }
         } else if (!hasFocus()) {
             if (mMask) {
-                maskNumber();
+                maskNumber()
             }
         }
     }
 
-    @Override
-    public boolean isValid() {
-        return isOptional() || mCardType.validate(getText().toString());
-    }
-
-    @Override
-    public String getErrorMessage() {
-        if (TextUtils.isEmpty(getText())) {
-            return getContext().getString(R.string.bt_card_number_required);
+    override val isValid: Boolean
+        get() = isOptional || cardType!!.validate(text.toString())
+    override val errorMessage: String
+        get() = if (TextUtils.isEmpty(text)) {
+            context.getString(R.string.bt_card_number_required)
         } else {
-            return getContext().getString(R.string.bt_card_number_invalid);
+            context.getString(R.string.bt_card_number_invalid)
+        }
+
+    private fun maskNumber() {
+        if (transformationMethod !is CardNumberTransformation) {
+            mSavedTranformationMethod = transformationMethod
+            transformationMethod = CardNumberTransformation()
         }
     }
 
-    private void maskNumber() {
-        if (!(getTransformationMethod() instanceof CardNumberTransformation)) {
-            mSavedTranformationMethod = getTransformationMethod();
-
-            setTransformationMethod(new CardNumberTransformation());
+    private fun unmaskNumber() {
+        if (transformationMethod !== mSavedTranformationMethod) {
+            transformationMethod = mSavedTranformationMethod
         }
     }
 
-    private void unmaskNumber() {
-        if (getTransformationMethod() != mSavedTranformationMethod) {
-            setTransformationMethod(mSavedTranformationMethod);
-        }
-    }
-
-    private void updateCardType() {
-        CardType type = CardType.forCardNumber(getText().toString());
-        if (mCardType != type) {
-            mCardType = type;
-
-            InputFilter[] filters = { new LengthFilter(mCardType.getMaxCardLength()) };
-            setFilters(filters);
-            invalidate();
-
+    private fun updateCardType() {
+        val type = forCardNumber(text.toString())
+        if (cardType !== type) {
+            cardType = type
+            val filters = arrayOf<InputFilter>(LengthFilter(cardType!!.maxCardLength))
+            setFilters(filters)
+            invalidate()
             if (mOnCardTypeChangedListener != null) {
-                mOnCardTypeChangedListener.onCardTypeChanged(mCardType);
+                mOnCardTypeChangedListener!!.onCardTypeChanged(cardType)
             }
         }
     }
 
-    private void addSpans(Editable editable, int[] spaceIndices) {
-        final int length = editable.length();
-        for (int index : spaceIndices) {
+    private fun addSpans(editable: Editable, spaceIndices: IntArray) {
+        val length = editable.length
+        for (index in spaceIndices) {
             if (index <= length) {
-                editable.setSpan(new SpaceSpan(), index - 1, index,
-                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                editable.setSpan(
+                    SpaceSpan(), index - 1, index,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
             }
         }
     }
 
-    private void setCardIcon(int icon) {
-        if (!mDisplayCardIcon || getText().length() == 0) {
-            TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(this, 0, 0, 0, 0);
+    private fun setCardIcon(icon: Int) {
+        if (!mDisplayCardIcon || text!!.length == 0) {
+            TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(this, 0, 0, 0, 0)
         } else {
-            TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(this, 0, 0, icon, 0);
+            TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(this, 0, 0, icon, 0)
         }
     }
 
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+    override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 }
