@@ -4,4 +4,10 @@
     <string name="walkthrough_skip">Skip</string>
     <string name="walkthrough_image_cd">WalkThrough Image</string>
     <string name="walkthrough_done">Done</string>
+    <string name="input_mode_manual">Manual</string>
+    <string name="input_mode_scan">Scan</string>
+    <string name="input_mode_subtitle">You can choose to enter manually or scan with your phone</string>
+    <string name="input_mode_title">Select input mode</string>
+    <string name="input_mode_manual_cd">Keyboard icon</string>
+    <string name="input_mode_scan_cd">OCR icon</string>
 </resources>

@@ -44,4 +44,12 @@ class Navigator @Inject constructor(
             navController.navigate(R.id.action_walkThroughFragment_to_cardInputModeFragment)
         }
     }
+
+    fun inputModeToManualInput() {
+        navController.navigate(R.id.action_cardInputModeFragment_to_manualInputFragment)
+    }
+
+    fun inputModeToOcrInput() {
+        navController.navigate(R.id.action_cardInputModeFragment_to_ocrInputFragment)
+    }
 }
