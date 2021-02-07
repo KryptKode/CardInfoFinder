@@ -39,7 +39,7 @@ class CardInfoFragment : Fragment(R.layout.fragment_card_info) {
         binding.cardView.setCardNumber(cardNumber)
 
         binding.retryButton.setOnClickListener {
-
+            getCardInfo()
         }
 
         binding.imgBack.setOnClickListener {
@@ -54,9 +54,7 @@ class CardInfoFragment : Fragment(R.layout.fragment_card_info) {
 
         }
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.getCardInfo(cardNumber)
-        }
+        getCardInfo()
 
         viewModel.viewState
             .onEach {
@@ -71,6 +69,12 @@ class CardInfoFragment : Fragment(R.layout.fragment_card_info) {
                     if (it.error) it.errorMessage else getString(R.string.card_info_loading_message)
             }
             .launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun getCardInfo() {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.getCardInfo(cardNumber)
+        }
     }
 
     @SuppressLint("DefaultLocale")
