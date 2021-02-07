@@ -7,21 +7,15 @@ import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.kryptkode.cardinfofinder.R
-import com.kryptkode.cardinfofinder.util.VibrationHelper
 
 /**
  * Parent [android.widget.EditText] for storing and displaying error states.
  */
 open class ErrorEditText : TextInputEditText {
-    private var mErrorAnimator: Animation? = null
-
     /**
      * @return the current error state of the [android.widget.EditText]
      */
@@ -53,7 +47,6 @@ open class ErrorEditText : TextInputEditText {
     }
 
     private fun init() {
-        mErrorAnimator = AnimationUtils.loadAnimation(context, R.anim.bt_error_animation)
         isError = false
         setupRTL()
     }
@@ -128,10 +121,6 @@ open class ErrorEditText : TextInputEditText {
         if (textInputLayout != null) {
             textInputLayout.isErrorEnabled = !TextUtils.isEmpty(errorMessage)
             textInputLayout.error = errorMessage
-        }
-        if (mErrorAnimator != null && isError) {
-            startAnimation(mErrorAnimator)
-            VibrationHelper.vibrate(context, 10)
         }
     }
 

@@ -82,7 +82,7 @@ class CardNumberEditText : ErrorEditText, TextWatcher {
         super.onFocusChanged(focused, direction, previouslyFocusedRect)
         if (focused) {
             unmaskNumber()
-            if (text.toString().length > 0) {
+            if (text.toString().isNotEmpty()) {
                 setSelection(text.toString().length)
             }
         } else if (mMask && isValid) {
@@ -169,7 +169,7 @@ class CardNumberEditText : ErrorEditText, TextWatcher {
     }
 
     private fun setCardIcon(icon: Int) {
-        if (!mDisplayCardIcon || text!!.length == 0) {
+        if (!mDisplayCardIcon || text!!.isEmpty()) {
             TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(this, 0, 0, 0, 0)
         } else {
             TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(this, 0, 0, icon, 0)
