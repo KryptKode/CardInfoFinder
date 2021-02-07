@@ -1,0 +1,129 @@
+name: android
+
+on: push
+
+# 3 different jobs that run in parallel to check the following
+# Detekt: Checks for Kotlin code smells & formatting issues (Ktlint enabled within detekt)
+# Lint: Checks for Android code smells
+# Tests: Checks for failing Unit tests
+
+# Due to being different jobs they run in independent machines so each requires setup + cache config
+# Caching Gradle with key hash of top build gradle, dependencies file or gradle-wrapper change cache
+
+jobs:
+
+  detekt:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Add CARD_SCAN_API_KEY to local.properties
+        env:
+          CARD_SCAN_API_KEY: ${{ secrets.CARD_SCAN_API_KEY }}
+        run: echo SCAN_CARD_API_KEY="CARD_SCAN_API_KEY" >> ./local.properties
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.gradle
+          key: ${{ runner.os }}-gradle-${{ hashFiles('build.gradle.kts') }}-${{ hashFiles('buildSrc/src/main/kotlin/Versions.kt') }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Run Detekt
+        run: ./gradlew detekt
+  ktlint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Add CARD_SCAN_API_KEY to local.properties
+        env:
+          CARD_SCAN_API_KEY: ${{ secrets.CARD_SCAN_API_KEY }}
+        run: echo SCAN_CARD_API_KEY="CARD_SCAN_API_KEY" >> ./local.properties
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.gradle
+          key: ${{ runner.os }}-gradle-${{ hashFiles('build.gradle.kts') }}-${{ hashFiles('buildSrc/src/main/kotlin/Versions.kt') }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Run Ktlint
+        run: ./gradlew ktlintCheck
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Add CARD_SCAN_API_KEY to local.properties
+        env:
+          CARD_SCAN_API_KEY: ${{ secrets.CARD_SCAN_API_KEY }}
+        run: echo SCAN_CARD_API_KEY="CARD_SCAN_API_KEY" >> ./local.properties
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.gradle
+          key: ${{ runner.os }}-gradle-${{ hashFiles('build.gradle.kts') }}-${{ hashFiles('buildSrc/src/main/kotlin/Versions.kt') }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Run Lint
+        run: ./gradlew lintDebug
+
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Add CARD_SCAN_API_KEY to local.properties
+        env:
+          CARD_SCAN_API_KEY: ${{ secrets.CARD_SCAN_API_KEY }}
+        run: echo SCAN_CARD_API_KEY="CARD_SCAN_API_KEY" >> ./local.properties
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.gradle
+          key: ${{ runner.os }}-gradle-${{ hashFiles('build.gradle.kts') }}-${{ hashFiles('buildSrc/src/main/kotlin/Versions.kt') }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Run Unit Tests
+        run: ./gradlew testDebugUnitTest
+
+      - name: Upload test reports
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: core-unit-test-report
+          path: |
+            app/build/reports/tests/testDebugUnitTest
+
+      - name: Generate Code Coverage
+        run: ./gradlew jacocoTestReportDebug
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          flags: unittests
+          fail_ci_if_error: true
