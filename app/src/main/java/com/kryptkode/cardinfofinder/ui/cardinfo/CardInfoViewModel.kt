@@ -37,7 +37,7 @@ class CardInfoViewModel @Inject constructor(
                 error = true,
                 errorMessage = dataState.message,
             )
-            is DataState.Loading -> oldState.copy(loading = true)
+            is DataState.Loading -> oldState.copy(loading = true, error = false)
             is DataState.Success -> oldState.copy(
                 loading = false,
                 error = false,
@@ -46,9 +46,19 @@ class CardInfoViewModel @Inject constructor(
         }
     }
 
+    @VisibleForTesting
+    var refresh = false
+
+    @VisibleForTesting
+    val areEquivalent: (String, String) -> Boolean = { old, new ->
+        val result = refresh.not() && old == new
+        result
+    }
+
+
     init {
         cardNumber
-            .distinctUntilChanged()
+            .distinctUntilChanged(areEquivalent)
             .flatMapLatest(getCardInfoUseCase::execute)
             .scan(CardInfoViewState()) { previous, result ->
                 stateReducer(previous, result)
@@ -58,7 +68,8 @@ class CardInfoViewModel @Inject constructor(
             .launchIn(viewModelScope)
     }
 
-    suspend fun getCardInfo(number: String) {
+    suspend fun getCardInfo(number: String, refresh:Boolean = false) {
+        this.refresh = refresh
         cardNumber.emit(number)
     }
 }
