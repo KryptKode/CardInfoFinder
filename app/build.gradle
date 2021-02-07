@@ -20,6 +20,8 @@ android {
         vectorDrawables.useSupportLibrary true
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "SCAN_CARD_API_KEY", getLocalProperty("SCAN_CARD_API_KEY"))
     }
 
 
@@ -104,6 +106,9 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
 
 
+    def getBouncerVersion = "2.0.0071"
+    implementation "com.getbouncer:cardscan-ui:$getBouncerVersion"
+    implementation "com.getbouncer:tensorflow-lite:$getBouncerVersion"
 
     implementation "com.jakewharton.timber:timber:4.7.1"
 

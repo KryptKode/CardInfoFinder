@@ -35,25 +35,21 @@
         android:id="@+id/manualInputFragment"
         android:name="com.kryptkode.cardinfofinder.ui.manualinput.ManualInputFragment"
         android:label="ManualInputFragment"
-        tools:layout="@layout/fragment_manual_input">
-        <action
-            android:id="@+id/action_manualInputFragment_to_cardInfoFragment"
-            app:destination="@id/cardInfoFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_manual_input"/>
 
     <fragment
         android:id="@+id/ocrInputFragment"
         android:name="com.kryptkode.cardinfofinder.ui.ocrinput.OcrInputFragment"
         android:label="OcrInputFragment"
-        tools:layout="@layout/fragment_ocr_input">
-        <action
-            android:id="@+id/action_ocrInputFragment_to_cardInfoFragment"
-            app:destination="@id/cardInfoFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_ocr_input"/>
 
     <fragment
         android:id="@+id/cardInfoFragment"
         android:name="com.kryptkode.cardinfofinder.ui.cardinfo.CardInfoFragment"
         android:label="CardInfoFragment"
         tools:layout="@layout/fragment_card_info" />
+
+    <action
+        android:id="@+id/action_to_cardInfoFragment"
+        app:destination="@id/cardInfoFragment" />
 </navigation>
