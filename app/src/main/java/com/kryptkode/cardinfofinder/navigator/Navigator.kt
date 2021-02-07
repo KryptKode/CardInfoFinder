@@ -6,7 +6,7 @@ import androidx.navigation.NavController
 import com.kryptkode.cardinfofinder.R
 import com.kryptkode.cardinfofinder.data.usecase.SeenWalkThroughUseCase
 import com.kryptkode.cardinfofinder.ui.cardinfo.CardInfoFragment
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 class Navigator @Inject constructor(
@@ -20,18 +20,17 @@ class Navigator @Inject constructor(
 
     fun setup() {
         activity.lifecycleScope.launchWhenCreated {
-            seenWalkThroughUseCase.seenWalkthrough().collect { seenWalkthrough ->
-                val graph = navController.navInflater.inflate(R.navigation.main_nav)
-                graph.startDestination = when {
-                    seenWalkthrough -> {
-                        R.id.cardInputModeFragment
-                    }
-                    else -> {
-                        R.id.walkThroughFragment
-                    }
+            val seenWalkthrough = seenWalkThroughUseCase.seenWalkthrough().first()
+            val graph = navController.navInflater.inflate(R.navigation.main_nav)
+            graph.startDestination = when {
+                seenWalkthrough -> {
+                    R.id.cardInputModeFragment
                 }
-                navController.graph = graph
+                else -> {
+                    R.id.walkThroughFragment
+                }
             }
+            navController.graph = graph
         }
     }
 
@@ -56,7 +55,7 @@ class Navigator @Inject constructor(
 
     fun toCardInfo(cardNumber: String) {
         navController.navigate(
-            R.id.action_manualInputFragment_to_cardInfoFragment,
+            R.id.action_to_cardInfoFragment,
             CardInfoFragment.makeArguments(cardNumber)
         )
     }

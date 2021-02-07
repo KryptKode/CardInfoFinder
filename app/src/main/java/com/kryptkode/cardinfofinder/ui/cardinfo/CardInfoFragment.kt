@@ -39,24 +39,14 @@ class CardInfoFragment : Fragment(R.layout.fragment_card_info) {
         binding.cardView.setCardNumber(cardNumber)
 
         binding.retryButton.setOnClickListener {
-
+            getCardInfo(refresh = true)
         }
 
         binding.imgBack.setOnClickListener {
             navigator.navigateUp()
         }
 
-        binding.cardBank.tvWebsite.setOnClickListener {
-
-        }
-
-        binding.cardBank.tvPhone.setOnClickListener {
-
-        }
-
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.getCardInfo(cardNumber)
-        }
+        getCardInfo()
 
         viewModel.viewState
             .onEach {
@@ -73,6 +63,12 @@ class CardInfoFragment : Fragment(R.layout.fragment_card_info) {
             .launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
+    private fun getCardInfo(refresh: Boolean = false) {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.getCardInfo(cardNumber, refresh)
+        }
+    }
+
     @SuppressLint("DefaultLocale")
     private fun bindCardInfo(cardInfo: CardInfo) {
 
@@ -85,8 +81,10 @@ class CardInfoFragment : Fragment(R.layout.fragment_card_info) {
         binding.cardCountry.tvEmoji.text = cardInfo.country.emoji
 
         binding.cardBank.tvName.text = cardInfo.bank.name.capitalize()
+
         binding.cardBank.tvPhone.text = cardInfo.bank.phone
         binding.cardBank.tvWebsite.text = cardInfo.bank.url
+
     }
 
     companion object {
