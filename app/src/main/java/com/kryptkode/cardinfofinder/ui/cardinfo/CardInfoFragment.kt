@@ -62,7 +62,7 @@ class CardInfoFragment : Fragment(R.layout.fragment_card_info) {
             .onEach {
                 binding.swipeRefresh.isEnabled = it.loading
                 binding.swipeRefresh.isRefreshing = it.loading
-                binding.cardDetailsGroup.isVisible = (it.error || it.loading).not()
+                binding.cardDetailsGroup.isVisible = it.cardInfo.brand.isNotEmpty()
                 bindCardInfo(it.cardInfo)
                 binding.errorGroup.isVisible = it.error || it.loading
                 binding.retryButton.isVisible = it.error

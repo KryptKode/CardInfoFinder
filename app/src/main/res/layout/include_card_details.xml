@@ -31,7 +31,7 @@
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
             app:layout_constraintVertical_bias="0"
-            app:srcCompat="@drawable/bt_ic_card" />
+            app:srcCompat="@drawable/ic_card" />
 
         <TextView
             android:id="@+id/tv_brand"

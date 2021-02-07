@@ -49,4 +49,7 @@
     <string name="unknown_exception">An unexpected error has occurred. Try
         again and contact the administrator
     </string>
+    <string name="card_number_title">Card number</string>
+    <string name="card_number_subtitle">Enter your the number as it appears on your credit card</string>
+    <string name="card_number_hint">Card number</string>
 </resources>

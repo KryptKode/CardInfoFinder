@@ -1,9 +1,10 @@
 package com.kryptkode.cardinfofinder.util.customview.card
 
 import android.content.Context
+import android.text.SpannableString
+import android.text.Spanned
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.kryptkode.cardinfofinder.R
 import com.kryptkode.cardinfofinder.databinding.CreditCardViewBinding
@@ -22,13 +23,25 @@ class CreditCardView(context: Context, attrs: AttributeSet) : ConstraintLayout(c
     }
 
     fun setCardNumber(cardNumber: String) {
-        binding.cardNumber.text = cardNumber
         val cardType = CardType.forCardNumber(cardNumber)
-        setCardTypeIcon(cardType.frontResource)
+        val textSpan = addSpans(cardNumber, cardType.spaceIndices)
+        binding.cardNumber.text = textSpan
+        binding.cardTypeLogo.setImageResource(cardType.frontResource)
     }
 
-    fun setCardTypeIcon(@DrawableRes resId: Int) {
-        binding.cardTypeLogo.setImageResource(resId)
+    private fun addSpans(editable: String, spaceIndices: IntArray): SpannableString {
+        val length = editable.length
+        val span = SpannableString(editable)
+        for (index in spaceIndices) {
+            if (index <= length) {
+                span.setSpan(
+                    SpaceSpan(), index - 1, index,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+        }
+
+        return span
     }
 
 }

@@ -49,7 +49,7 @@ class CardNumberEditText : ErrorEditText, TextWatcher {
 
     private fun init() {
         inputType = InputType.TYPE_CLASS_NUMBER
-        setCardIcon(R.drawable.bt_ic_unknown)
+        setCardIcon(R.drawable.ic_unknown_card)
         addTextChangedListener(this)
         updateCardType()
         mSavedTranformationMethod = transformationMethod
@@ -177,4 +177,9 @@ class CardNumberEditText : ErrorEditText, TextWatcher {
     }
 
     override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        removeTextChangedListener(this)
+    }
 }

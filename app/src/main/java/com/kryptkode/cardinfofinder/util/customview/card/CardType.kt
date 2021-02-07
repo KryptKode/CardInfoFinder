@@ -13,74 +13,74 @@ enum class CardType(
 ) {
     VISA(
         "^4\\d*",
-        R.drawable.bt_ic_visa,
+        R.drawable.ic_visa,
         16, 16,
         3, R.string.bt_cvv, null
     ),
     MASTERCARD(
         "^(5[1-5]|222[1-9]|22[3-9]|2[3-6]|27[0-1]|2720)\\d*",
-        R.drawable.bt_ic_mastercard,
+        R.drawable.ic_mastercard,
         16, 16,
         3, R.string.bt_cvc, null
     ),
     DISCOVER(
         "^(6011|65|64[4-9]|622)\\d*",
-        R.drawable.bt_ic_discover,
+        R.drawable.ic_discover,
         16, 16,
         3, R.string.bt_cid, null
     ),
     AMEX(
         "^3[47]\\d*",
-        R.drawable.bt_ic_amex,
+        R.drawable.ic_amex,
         15, 15,
         4, R.string.bt_cid, null
     ),
     DINERS_CLUB(
         "^(36|38|30[0-5])\\d*",
-        R.drawable.bt_ic_diners_club,
+        R.drawable.ic_diners_club,
         14, 14,
         3, R.string.bt_cvv, null
     ),
     JCB(
         "^35\\d*",
-        R.drawable.bt_ic_jcb,
+        R.drawable.ic_jcb,
         16, 16,
         3, R.string.bt_cvv, null
     ),
     MAESTRO(
         "^(5018|5020|5038|5[6-9]|6020|6304|6703|6759|676[1-3])\\d*",
-        R.drawable.bt_ic_maestro,
+        R.drawable.ic_maestro,
         12, 19,
         3, R.string.bt_cvc,
         "^6\\d*"
     ),
     UNIONPAY(
         "^62\\d*",
-        R.drawable.bt_ic_unionpay,
+        R.drawable.ic_unionpay,
         16, 19,
         3, R.string.bt_cvn, null
     ),
     HIPER(
         "^637(095|568|599|609|612)\\d*",
-        R.drawable.bt_ic_hiper,
+        R.drawable.ic_hiper,
         16, 16,
         3, R.string.bt_cvc, null
     ),
     HIPERCARD(
         "^606282\\d*",
-        R.drawable.bt_ic_hipercard,
+        R.drawable.ic_hipercard,
         16, 16,
         3, R.string.bt_cvc, null
     ),
     UNKNOWN(
         "\\d+",
-        R.drawable.bt_ic_unknown,
+        R.drawable.ic_unknown_card,
         12, 19,
         3, R.string.bt_cvv, null
     ),
     EMPTY(
         "^$",
-        R.drawable.bt_ic_unknown,
+        R.drawable.ic_unknown_card,
         12, 19,
         3, R.string.bt_cvv, null
     );
@@ -88,12 +88,12 @@ enum class CardType(
     /**
      * @return The regex matching this card type.
      */
-    val pattern: Pattern
+    val pattern: Pattern = Pattern.compile(regex)
 
     /**
      * @return The relaxed prefix regex matching this card type. To be used in determining card type if no pattern matches.
      */
-    val relaxedPrefixPattern: Pattern?
+    val relaxedPrefixPattern: Pattern? = if (relaxedPrefixPattern == null) null else Pattern.compile(relaxedPrefixPattern)
 
     /**
      * @return The android resource id for the front card image, highlighting card number format.
@@ -223,8 +223,6 @@ enum class CardType(
     }
 
     init {
-        pattern = Pattern.compile(regex)
-        this.relaxedPrefixPattern = if (relaxedPrefixPattern == null) null else Pattern.compile(relaxedPrefixPattern)
         this.frontResource = frontResource
         this.minCardLength = minCardLength
         this.maxCardLength = maxCardLength
