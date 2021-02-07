@@ -46,14 +46,6 @@ class CardInfoFragment : Fragment(R.layout.fragment_card_info) {
             navigator.navigateUp()
         }
 
-        binding.cardBank.tvWebsite.setOnClickListener {
-
-        }
-
-        binding.cardBank.tvPhone.setOnClickListener {
-
-        }
-
         getCardInfo()
 
         viewModel.viewState
@@ -71,7 +63,7 @@ class CardInfoFragment : Fragment(R.layout.fragment_card_info) {
             .launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
-    private fun getCardInfo(refresh:Boolean = false) {
+    private fun getCardInfo(refresh: Boolean = false) {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.getCardInfo(cardNumber, refresh)
         }
@@ -89,8 +81,10 @@ class CardInfoFragment : Fragment(R.layout.fragment_card_info) {
         binding.cardCountry.tvEmoji.text = cardInfo.country.emoji
 
         binding.cardBank.tvName.text = cardInfo.bank.name.capitalize()
+
         binding.cardBank.tvPhone.text = cardInfo.bank.phone
         binding.cardBank.tvWebsite.text = cardInfo.bank.url
+
     }
 
     companion object {

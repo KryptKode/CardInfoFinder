@@ -51,8 +51,7 @@ class CardInfoViewModel @Inject constructor(
 
     @VisibleForTesting
     val areEquivalent: (String, String) -> Boolean = { old, new ->
-        val result = refresh.not() && old == new
-        result
+        refresh.not() && old == new
     }
 
 
