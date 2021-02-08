@@ -7,6 +7,7 @@ import com.kryptkode.cardinfofinder.data.model.CardInfo
 import com.kryptkode.cardinfofinder.data.model.DataState
 import com.kryptkode.cardinfofinder.data.usecase.GetCardInfoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,7 +16,6 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.scan
-import javax.inject.Inject
 
 @Suppress("EXPERIMENTAL_API_USAGE")
 @HiltViewModel

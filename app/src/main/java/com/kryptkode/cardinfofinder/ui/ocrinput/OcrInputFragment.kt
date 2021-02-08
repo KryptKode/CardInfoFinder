@@ -19,9 +19,9 @@ import com.kryptkode.cardinfofinder.navigator.Navigator
 import com.kryptkode.cardinfofinder.util.ocr.TextReaderAnalyzer
 import com.kryptkode.cardinfofinder.util.viewbinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 import java.util.concurrent.Executors
 import javax.inject.Inject
+import timber.log.Timber
 
 @AndroidEntryPoint
 class OcrInputFragment : Fragment(R.layout.fragment_ocr_input) {

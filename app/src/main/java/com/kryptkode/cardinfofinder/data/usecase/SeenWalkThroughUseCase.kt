@@ -2,10 +2,10 @@ package com.kryptkode.cardinfofinder.data.usecase
 
 import com.kryptkode.cardinfofinder.data.dispatcher.AppDispatchers
 import com.kryptkode.cardinfofinder.data.local.KeyValueStore
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 class SeenWalkThroughUseCase @Inject constructor(
     private val keyValueStore: KeyValueStore,

@@ -13,9 +13,9 @@ import com.kryptkode.cardinfofinder.databinding.FragmentCardInfoBinding
 import com.kryptkode.cardinfofinder.navigator.Navigator
 import com.kryptkode.cardinfofinder.util.viewbinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class CardInfoFragment : Fragment(R.layout.fragment_card_info) {

@@ -7,8 +7,8 @@ import androidx.camera.core.ImageProxy
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.TextRecognition
-import timber.log.Timber
 import java.io.IOException
+import timber.log.Timber
 
 class TextReaderAnalyzer(
     private val textFoundListener: (String) -> Unit

@@ -6,10 +6,10 @@ import com.kryptkode.cardinfofinder.data.model.CardInfo
 import com.kryptkode.cardinfofinder.data.model.DataState
 import com.kryptkode.cardinfofinder.data.service.BinListService
 import com.kryptkode.cardinfofinder.data.service.mapper.CardResponseMapper
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import javax.inject.Inject
 
 class GetCardInfoUseCase @Inject constructor(
     private val errorHandler: ErrorHandler,

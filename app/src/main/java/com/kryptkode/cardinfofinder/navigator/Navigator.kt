@@ -6,8 +6,8 @@ import androidx.navigation.NavController
 import com.kryptkode.cardinfofinder.R
 import com.kryptkode.cardinfofinder.data.usecase.SeenWalkThroughUseCase
 import com.kryptkode.cardinfofinder.ui.cardinfo.CardInfoFragment
-import kotlinx.coroutines.flow.first
 import javax.inject.Inject
+import kotlinx.coroutines.flow.first
 
 class Navigator @Inject constructor(
     private val activity: AppCompatActivity,
