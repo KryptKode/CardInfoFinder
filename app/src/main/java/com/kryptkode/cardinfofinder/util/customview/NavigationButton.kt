@@ -7,9 +7,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.kryptkode.cardinfofinder.databinding.NavigationButtonBinding
 
 class NavigationButton(context: Context, attributeSet: AttributeSet) :
-        ConstraintLayout(context, attributeSet) {
+    ConstraintLayout(context, attributeSet) {
 
-    private val binding = NavigationButtonBinding.inflate(LayoutInflater.from(context),this)
+    private val binding = NavigationButtonBinding.inflate(LayoutInflater.from(context), this)
 
     fun setLeftButtonListener(listener: () -> Unit) {
         binding.leftBtn.setOnClickListener {
@@ -23,5 +23,3 @@ class NavigationButton(context: Context, attributeSet: AttributeSet) :
         }
     }
 }
-
-

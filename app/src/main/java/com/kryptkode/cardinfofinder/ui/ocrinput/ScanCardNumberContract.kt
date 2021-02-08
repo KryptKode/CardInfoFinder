@@ -40,7 +40,6 @@ class ScanCardNumberContract @Inject constructor(
             } else {
                 ScanCardNumberResult.Error(getString(R.string.scan_card_error_msg))
             }
-
         } else {
             when {
                 intent.isUserCanceled() -> ScanCardNumberResult.UserCancelled

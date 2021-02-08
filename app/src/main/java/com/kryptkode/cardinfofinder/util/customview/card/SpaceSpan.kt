@@ -17,8 +17,15 @@ class SpaceSpan : ReplacementSpan() {
     }
 
     override fun draw(
-        canvas: Canvas, text: CharSequence, start: Int, end: Int, x: Float, top: Int, y: Int,
-        bottom: Int, paint: Paint
+        canvas: Canvas,
+        text: CharSequence,
+        start: Int,
+        end: Int,
+        x: Float,
+        top: Int,
+        y: Int,
+        bottom: Int,
+        paint: Paint
     ) {
         canvas.drawText(text.subSequence(start, end).toString() + " ", x, y.toFloat(), paint)
     }

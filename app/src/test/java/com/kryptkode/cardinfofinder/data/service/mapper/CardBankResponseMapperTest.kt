@@ -5,7 +5,6 @@ import com.kryptkode.cardinfofinder.utils.FakeDataFactory.makeFakeCardBankRespon
 import org.junit.Before
 import org.junit.Test
 
-
 class CardBankResponseMapperTest {
 
     private lateinit var sut: CardBankResponseMapper

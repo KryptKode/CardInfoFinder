@@ -1,6 +1,6 @@
 package com.kryptkode.cardinfofinder.utils
 
-import java.util.*
+import java.util.UUID
 import java.util.concurrent.ThreadLocalRandom
 
 object DataFactory {

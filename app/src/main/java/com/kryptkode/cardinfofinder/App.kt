@@ -13,7 +13,7 @@ class App : MultiDexApplication() {
     }
 
     private fun initTimber() {
-        if(BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
     }

@@ -34,7 +34,6 @@ class WalkThroughAdapter :
         }
     }
 
-
     companion object {
         val DIFF_UTIL = object : DiffUtil.ItemCallback<WalkThroughItem>() {
             override fun areContentsTheSame(

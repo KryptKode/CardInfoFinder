@@ -13,9 +13,9 @@ import com.kryptkode.cardinfofinder.databinding.FragmentCardInfoBinding
 import com.kryptkode.cardinfofinder.navigator.Navigator
 import com.kryptkode.cardinfofinder.util.viewbinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class CardInfoFragment : Fragment(R.layout.fragment_card_info) {
@@ -26,7 +26,6 @@ class CardInfoFragment : Fragment(R.layout.fragment_card_info) {
     private val viewModel by viewModels<CardInfoViewModel>()
     private val binding by viewBinding(FragmentCardInfoBinding::bind)
     private val cardNumber by lazy { arguments?.getString(CARD_NUMBER_KEY)!! }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -84,7 +83,6 @@ class CardInfoFragment : Fragment(R.layout.fragment_card_info) {
 
         binding.cardBank.tvPhone.text = cardInfo.bank.phone
         binding.cardBank.tvWebsite.text = cardInfo.bank.url
-
     }
 
     companion object {

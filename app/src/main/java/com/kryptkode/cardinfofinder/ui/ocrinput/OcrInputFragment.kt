@@ -19,9 +19,9 @@ import com.kryptkode.cardinfofinder.navigator.Navigator
 import com.kryptkode.cardinfofinder.util.ocr.TextReaderAnalyzer
 import com.kryptkode.cardinfofinder.util.viewbinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 import java.util.concurrent.Executors
 import javax.inject.Inject
+import timber.log.Timber
 
 @AndroidEntryPoint
 class OcrInputFragment : Fragment(R.layout.fragment_ocr_input) {
@@ -55,15 +55,13 @@ class OcrInputFragment : Fragment(R.layout.fragment_ocr_input) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                CAMERA_PERMISSION
-            ) == PackageManager.PERMISSION_GRANTED
+        if (ActivityCompat.checkSelfPermission(requireContext(), CAMERA_PERMISSION)
+            == PackageManager.PERMISSION_GRANTED
         ) {
             startCamera()
-        }else{
+        } else {
             if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), CAMERA_PERMISSION)) {
-                //show rationale
+                // show rationale
             } else {
                 cameraPermission.launch(CAMERA_PERMISSION)
             }
@@ -99,7 +97,6 @@ class OcrInputFragment : Fragment(R.layout.fragment_ocr_input) {
         Timber.e(ise, "Binding failed")
     }
 
-
     private fun onTextFound(foundText: String) {
         Timber.d("We got new text: $foundText")
     }
@@ -113,4 +110,3 @@ class OcrInputFragment : Fragment(R.layout.fragment_ocr_input) {
         private const val CAMERA_PERMISSION = Manifest.permission.CAMERA
     }
 }
-

@@ -34,13 +34,13 @@
             app:srcCompat="@drawable/ic_card" />
 
         <TextView
-            android:id="@+id/tv_brand"
+            android:id="@+id/tv_scheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:textAppearance="@style/TextAppearance.App.Main"
-            app:layout_constraintEnd_toStartOf="@id/tv_scheme"
+            app:layout_constraintEnd_toStartOf="@id/tv_brand"
             app:layout_constraintStart_toEndOf="@id/image_card"
             app:layout_constraintTop_toTopOf="@id/image_card"
             tools:text="mastercard" />
@@ -55,14 +55,14 @@
             android:gravity="center_vertical"
             android:textAppearance="@style/TextAppearance.App.ListPrimary"
             app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
-            app:layout_constraintEnd_toStartOf="@id/tv_scheme"
+            app:layout_constraintEnd_toStartOf="@id/tv_brand"
             app:layout_constraintStart_toEndOf="@id/image_card"
-            app:layout_constraintTop_toBottomOf="@id/tv_brand"
+            app:layout_constraintTop_toBottomOf="@id/tv_scheme"
             tools:text="Type: debit" />
 
 
         <TextView
-            android:id="@+id/tv_scheme"
+            android:id="@+id/tv_brand"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

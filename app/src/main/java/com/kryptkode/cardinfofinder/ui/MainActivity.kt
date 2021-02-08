@@ -24,8 +24,10 @@ class MainActivity : AppCompatActivity(), NavControllerProvider {
     }
 
     override fun getNavController(): NavController {
-        return (supportFragmentManager
-            .findFragmentById(R.id.nav_host) as NavHostFragment).navController
+        return (
+            supportFragmentManager
+                .findFragmentById(R.id.nav_host) as NavHostFragment
+            ).navController
     }
 
     companion object {

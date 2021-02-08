@@ -7,8 +7,8 @@ import androidx.camera.core.ImageProxy
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.TextRecognition
-import timber.log.Timber
 import java.io.IOException
+import timber.log.Timber
 
 class TextReaderAnalyzer(
     private val textFoundListener: (String) -> Unit
@@ -23,7 +23,7 @@ class TextReaderAnalyzer(
         try {
             readTextFromImage(InputImage.fromMediaImage(image, 90), imageProxy)
         } catch (e: IOException) {
-            Timber.d( e, "Failed to load the image")
+            Timber.d(e, "Failed to load the image")
         }
     }
 
@@ -31,7 +31,7 @@ class TextReaderAnalyzer(
         TextRecognition.getClient()
             .process(image)
             .addOnSuccessListener { visionText ->
-                processTextFromImage(visionText, imageProxy)
+                processTextFromImage(visionText)
                 imageProxy.close()
             }
             .addOnFailureListener { error ->
@@ -40,7 +40,7 @@ class TextReaderAnalyzer(
             }
     }
 
-    private fun processTextFromImage(visionText: Text, imageProxy: ImageProxy) {
+    private fun processTextFromImage(visionText: Text) {
         for (block in visionText.textBlocks) {
             // You can access whole block of text using block.text
             for (line in block.lines) {
