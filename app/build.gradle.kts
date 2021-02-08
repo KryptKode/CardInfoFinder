@@ -106,6 +106,7 @@ dependencies {
     testImplementation(Libs.core_testing)
     testImplementation(Libs.mockk)
     testImplementation(Libs.truth)
+    testImplementation (Libs.robolectric)
     testImplementation(Libs.mockwebserver)
     testImplementation(Libs.kotlin_test_junit)
     testImplementation(Libs.kotlinx_coroutines_test) {
