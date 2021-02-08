@@ -20,8 +20,8 @@ class Navigator @Inject constructor(
 
     fun setup() {
         activity.lifecycleScope.launchWhenCreated {
-            val seenWalkthrough = seenWalkThroughUseCase.seenWalkthrough().first()
             val graph = navController.navInflater.inflate(R.navigation.main_nav)
+            val seenWalkthrough = seenWalkThroughUseCase.seenWalkthrough().first()
             graph.startDestination = when {
                 seenWalkthrough -> {
                     R.id.cardInputModeFragment
