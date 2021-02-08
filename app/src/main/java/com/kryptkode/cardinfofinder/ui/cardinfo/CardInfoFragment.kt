@@ -27,7 +27,6 @@ class CardInfoFragment : Fragment(R.layout.fragment_card_info) {
     private val binding by viewBinding(FragmentCardInfoBinding::bind)
     private val cardNumber by lazy { arguments?.getString(CARD_NUMBER_KEY)!! }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -84,7 +83,6 @@ class CardInfoFragment : Fragment(R.layout.fragment_card_info) {
 
         binding.cardBank.tvPhone.text = cardInfo.bank.phone
         binding.cardBank.tvWebsite.text = cardInfo.bank.url
-
     }
 
     companion object {

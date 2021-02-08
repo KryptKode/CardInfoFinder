@@ -3,7 +3,6 @@ package com.kryptkode.cardinfofinder.data.service.response
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-
 @JsonClass(generateAdapter = true)
 data class CardInfoResponse(
     @get:Json(name = "scheme") val scheme: String = "",
@@ -30,4 +29,3 @@ data class CardBankResponse(
     @get:Json(name = "url") val url: String = "",
     @get:Json(name = "phone") val phone: String = "",
 )
-

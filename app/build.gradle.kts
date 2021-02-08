@@ -45,7 +45,6 @@ android {
     }
 }
 
-
 dependencies {
 
     implementation(Libs.kotlin_stdlib)
@@ -69,20 +68,17 @@ dependencies {
     implementation(Libs.lifecycle_runtime_ktx)
     implementation(Libs.lifecycle_common_java8)
 
-
     implementation(Libs.navigation_fragment_ktx)
     implementation(Libs.navigation_ui_ktx)
-
 
     implementation(Libs.datastore_preferences)
 
     implementation(Libs.glide)
     kapt(Libs.com_github_bumptech_glide_compiler)
 
-    //Dependency injection
+    // Dependency injection
     implementation(Libs.hilt_android)
     kapt(Libs.hilt_android_compiler)
-
 
     implementation(Libs.timber)
 
@@ -103,7 +99,6 @@ dependencies {
     implementation(Libs.camera_lifecycle)
     implementation(Libs.camera_view)
 
-
     implementation(Libs.espresso_idling_resource)
 
     // unit testing
@@ -113,15 +108,15 @@ dependencies {
     testImplementation(Libs.truth)
     testImplementation(Libs.mockwebserver)
     testImplementation(Libs.kotlin_test_junit)
-    testImplementation(Libs.kotlinx_coroutines_test){
+    testImplementation(Libs.kotlinx_coroutines_test) {
         exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-debug")
     }
 
     debugImplementation(Libs.fragment_testing)
 
-    //instrumentation testing
+    // instrumentation testing
     androidTestImplementation(Libs.kotlin_test_junit)
-    androidTestImplementation(Libs.kotlinx_coroutines_test){
+    androidTestImplementation(Libs.kotlinx_coroutines_test) {
         exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-debug")
     }
     androidTestImplementation(Libs.androidx_test_runner)

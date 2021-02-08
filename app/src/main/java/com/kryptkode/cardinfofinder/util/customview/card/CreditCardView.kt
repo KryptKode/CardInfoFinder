@@ -35,7 +35,9 @@ class CreditCardView(context: Context, attrs: AttributeSet) : ConstraintLayout(c
         for (index in spaceIndices) {
             if (index <= length) {
                 span.setSpan(
-                    SpaceSpan(), index - 1, index,
+                    SpaceSpan(),
+                    index - 1,
+                    index,
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
             }
@@ -43,5 +45,4 @@ class CreditCardView(context: Context, attrs: AttributeSet) : ConstraintLayout(c
 
         return span
     }
-
 }

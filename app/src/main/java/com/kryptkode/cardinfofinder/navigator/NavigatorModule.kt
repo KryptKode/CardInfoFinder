@@ -22,7 +22,7 @@ interface NavigatorModule {
 
         @Provides
         @ActivityScoped
-        fun provideAppCompatActivity(activity: Activity): AppCompatActivity{
+        fun provideAppCompatActivity(activity: Activity): AppCompatActivity {
             return activity as AppCompatActivity
         }
     }

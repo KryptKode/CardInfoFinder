@@ -29,11 +29,13 @@ class WalkThroughFragment : Fragment(R.layout.fragment_walkthrough) {
 
         adapter = WalkThroughAdapter()
         binding.viewPager.adapter = adapter
-        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                handlePageChange(position)
+        binding.viewPager.registerOnPageChangeCallback(
+            object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    handlePageChange(position)
+                }
             }
-        })
+        )
 
         binding.skipButton.setOnClickListener {
             navigator.walkThroughToNext()

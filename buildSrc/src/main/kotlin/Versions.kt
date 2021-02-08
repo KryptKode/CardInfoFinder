@@ -79,7 +79,7 @@ object Versions {
 
     const val core_testing: String = "1.1.1"
 
-    const val fragment_ktx: String = "1.2.5"
+    const val fragment_ktx: String = "1.3.0-rc02"
 
     const val camera_view: String = "1.0.0-alpha21"
 

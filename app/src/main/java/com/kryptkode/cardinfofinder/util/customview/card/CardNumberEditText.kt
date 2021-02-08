@@ -161,7 +161,9 @@ class CardNumberEditText : ErrorEditText, TextWatcher {
         for (index in spaceIndices) {
             if (index <= length) {
                 editable.setSpan(
-                    SpaceSpan(), index - 1, index,
+                    SpaceSpan(),
+                    index - 1,
+                    index,
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
             }

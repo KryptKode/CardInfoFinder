@@ -8,81 +8,121 @@ import java.util.regex.Pattern
  * Card types and related formatting and validation rules.
  */
 enum class CardType(
-    regex: String, frontResource: Int, minCardLength: Int, maxCardLength: Int, securityCodeLength: Int,
-    securityCodeName: Int, relaxedPrefixPattern: String?
+    regex: String,
+    frontResource: Int,
+    minCardLength: Int,
+    maxCardLength: Int,
+    securityCodeLength: Int,
+    securityCodeName: Int,
+    relaxedPrefixPattern: String?
 ) {
     VISA(
         "^4\\d*",
         R.drawable.ic_visa,
-        16, 16,
-        3, R.string.bt_cvv, null
+        16,
+        16,
+        3,
+        R.string.bt_cvv,
+        null
     ),
     MASTERCARD(
         "^(5[1-5]|222[1-9]|22[3-9]|2[3-6]|27[0-1]|2720)\\d*",
         R.drawable.ic_mastercard,
-        16, 16,
-        3, R.string.bt_cvc, null
+        16,
+        16,
+        3,
+        R.string.bt_cvc,
+        null
     ),
     DISCOVER(
         "^(6011|65|64[4-9]|622)\\d*",
         R.drawable.ic_discover,
-        16, 16,
-        3, R.string.bt_cid, null
+        16,
+        16,
+        3,
+        R.string.bt_cid,
+        null
     ),
     AMEX(
         "^3[47]\\d*",
         R.drawable.ic_amex,
-        15, 15,
-        4, R.string.bt_cid, null
+        15,
+        15,
+        4,
+        R.string.bt_cid,
+        null
     ),
     DINERS_CLUB(
         "^(36|38|30[0-5])\\d*",
         R.drawable.ic_diners_club,
-        14, 14,
-        3, R.string.bt_cvv, null
+        14,
+        14,
+        3,
+        R.string.bt_cvv,
+        null
     ),
     JCB(
         "^35\\d*",
         R.drawable.ic_jcb,
-        16, 16,
-        3, R.string.bt_cvv, null
+        16,
+        16,
+        3,
+        R.string.bt_cvv,
+        null
     ),
     MAESTRO(
         "^(5018|5020|5038|5[6-9]|6020|6304|6703|6759|676[1-3])\\d*",
         R.drawable.ic_maestro,
-        12, 19,
-        3, R.string.bt_cvc,
+        12,
+        19,
+        3,
+        R.string.bt_cvc,
         "^6\\d*"
     ),
     UNIONPAY(
         "^62\\d*",
         R.drawable.ic_unionpay,
-        16, 19,
-        3, R.string.bt_cvn, null
+        16,
+        19,
+        3,
+        R.string.bt_cvn,
+        null
     ),
     HIPER(
         "^637(095|568|599|609|612)\\d*",
         R.drawable.ic_hiper,
-        16, 16,
-        3, R.string.bt_cvc, null
+        16,
+        16,
+        3,
+        R.string.bt_cvc,
+        null
     ),
     HIPERCARD(
         "^606282\\d*",
         R.drawable.ic_hipercard,
-        16, 16,
-        3, R.string.bt_cvc, null
+        16,
+        16,
+        3,
+        R.string.bt_cvc,
+        null
     ),
     UNKNOWN(
         "\\d+",
         R.drawable.ic_unknown_card,
-        12, 19,
-        3, R.string.bt_cvv, null
+        12,
+        19,
+        3,
+        R.string.bt_cvv,
+        null
     ),
     EMPTY(
         "^$",
         R.drawable.ic_unknown_card,
-        12, 19,
-        3, R.string.bt_cvv, null
+        12,
+        19,
+        3,
+        R.string.bt_cvv,
+        null
     );
 
     /**
@@ -93,7 +133,9 @@ enum class CardType(
     /**
      * @return The relaxed prefix regex matching this card type. To be used in determining card type if no pattern matches.
      */
-    val relaxedPrefixPattern: Pattern? = if (relaxedPrefixPattern == null) null else Pattern.compile(relaxedPrefixPattern)
+    val relaxedPrefixPattern: Pattern? = if (relaxedPrefixPattern == null) null else Pattern.compile(
+        relaxedPrefixPattern
+    )
 
     /**
      * @return The android resource id for the front card image, highlighting card number format.
@@ -141,7 +183,7 @@ enum class CardType(
         if (numberLength < minCardLength || numberLength > maxCardLength) {
             return false
         } else if (!pattern.matcher(cardNumber)
-                .matches() && relaxedPrefixPattern != null && !relaxedPrefixPattern.matcher(cardNumber).matches()
+            .matches() && relaxedPrefixPattern != null && !relaxedPrefixPattern.matcher(cardNumber).matches()
         ) {
             return false
         }
@@ -202,7 +244,7 @@ enum class CardType(
          * @return `true` if the sequence passes the checksum
          * @throws IllegalArgumentException if `cardNumber` contained a non-digit (where [ ][Character.isDefined] is `false`).
          * @see [Luhn Algorithm
-        ](http://en.wikipedia.org/wiki/Luhn_algorithm) */
+         ](http://en.wikipedia.org/wiki/Luhn_algorithm) */
         fun isLuhnValid(cardNumber: String): Boolean {
             val reversed = StringBuffer(cardNumber).reverse().toString()
             val len = reversed.length

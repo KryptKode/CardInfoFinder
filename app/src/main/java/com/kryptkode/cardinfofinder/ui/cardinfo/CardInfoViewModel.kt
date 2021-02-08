@@ -54,7 +54,6 @@ class CardInfoViewModel @Inject constructor(
         refresh.not() && old == new
     }
 
-
     init {
         cardNumber
             .distinctUntilChanged(areEquivalent)
@@ -67,7 +66,7 @@ class CardInfoViewModel @Inject constructor(
             .launchIn(viewModelScope)
     }
 
-    suspend fun getCardInfo(number: String, refresh:Boolean = false) {
+    suspend fun getCardInfo(number: String, refresh: Boolean = false) {
         this.refresh = refresh
         cardNumber.emit(number)
     }

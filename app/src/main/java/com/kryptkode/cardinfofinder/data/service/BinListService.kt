@@ -11,4 +11,3 @@ interface BinListService {
         @Path("cardNumber") cardNumber: String,
     ): CardInfoResponse
 }
-

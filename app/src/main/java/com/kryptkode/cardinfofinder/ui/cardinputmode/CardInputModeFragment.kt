@@ -30,13 +30,13 @@ class CardInputModeFragment : Fragment(R.layout.fragment_card_input_mode) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val scanCard = registerForActivityResult(scanCardNumberContract){result->
-            when(result){
+        val scanCard = registerForActivityResult(scanCardNumberContract) { result ->
+            when (result) {
                 is ScanCardNumberResult.Success -> {
                     navigator.toCardInfo(result.cardNumber)
                 }
 
-                is ScanCardNumberResult.UserEnterManually ->{
+                is ScanCardNumberResult.UserEnterManually -> {
                     navigator.inputModeToManualInput()
                 }
 
@@ -45,7 +45,7 @@ class CardInputModeFragment : Fragment(R.layout.fragment_card_input_mode) {
                 }
 
                 is ScanCardNumberResult.UserCancelled -> {
-                    //ignore
+                    // ignore
                 }
             }
         }
