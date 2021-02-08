@@ -108,6 +108,7 @@ dependencies {
     testImplementation(Libs.truth)
     testImplementation (Libs.robolectric)
     testImplementation(Libs.mockwebserver)
+    testImplementation(Libs.turbine)
     testImplementation(Libs.kotlin_test_junit)
     testImplementation(Libs.kotlinx_coroutines_test) {
         exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-debug")

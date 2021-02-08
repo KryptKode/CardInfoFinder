@@ -325,6 +325,11 @@ object Libs {
     const val multidex: String = "androidx.multidex:multidex:" + Versions.multidex
 
     /**
+     * https://github.com/cashapp/turbine/
+     */
+    const val turbine: String = "app.cash.turbine:turbine:" + Versions.turbine
+
+    /**
      * https://github.com/pinterest/ktlint
      */
     const val ktlint: String = "com.pinterest:ktlint:" + Versions.ktlint

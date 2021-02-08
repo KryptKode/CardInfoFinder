@@ -86,6 +86,8 @@ object Versions {
 
     const val multidex: String = "2.0.1"
 
+    const val turbine: String = "0.3.0"
+
     const val ktlint: String = "0.38.1" // available: "0.40.0"
 
     const val timber: String = "4.7.1"
