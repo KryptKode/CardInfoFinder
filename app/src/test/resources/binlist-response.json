@@ -1,0 +1,20 @@
+{
+  "number": {},
+  "scheme": "mastercard",
+  "type": "debit",
+  "brand": "Debit",
+  "country": {
+    "numeric": "566",
+    "alpha2": "NG",
+    "name": "Nigeria",
+    "emoji": "🇳🇬",
+    "currency": "NGN",
+    "latitude": 10,
+    "longitude": 8
+  },
+  "bank": {
+    "name": "WELLS FARGO BANK, N.A.",
+    "url": "www.wellsfargo.com",
+    "phone": "(907) 543-3875"
+  }
+}
