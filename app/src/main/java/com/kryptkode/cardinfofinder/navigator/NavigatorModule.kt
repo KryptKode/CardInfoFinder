@@ -2,6 +2,8 @@ package com.kryptkode.cardinfofinder.navigator
 
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.lifecycle.lifecycleScope
 import com.kryptkode.cardinfofinder.ui.MainActivity
 import dagger.Module
 import dagger.Provides
@@ -16,14 +18,14 @@ interface NavigatorModule {
     companion object {
         @Provides
         @ActivityScoped
-        fun provideNavControllerProvider(activity: AppCompatActivity): NavControllerProvider {
+        fun provideNavControllerProvider(activity: Activity): NavControllerProvider {
             return (activity as MainActivity)
         }
 
         @Provides
         @ActivityScoped
-        fun provideAppCompatActivity(activity: Activity): AppCompatActivity {
-            return activity as AppCompatActivity
+        fun provideAppCompatActivity(activity: Activity): LifecycleCoroutineScope {
+            return (activity as AppCompatActivity).lifecycleScope
         }
     }
 }

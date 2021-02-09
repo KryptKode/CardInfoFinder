@@ -50,7 +50,6 @@ class GetCardInfoUseCaseTest {
         stubMapper(makeFakeCardInfo())
     }
 
-
     @Test
     fun `execute emits loading state initially`() = coroutineRule.runBlockingTest {
         sut.execute("").test {
@@ -155,9 +154,9 @@ class GetCardInfoUseCaseTest {
         } throws throwable
     }
 
-    private fun stubMapper(cardInfo: CardInfo){
+    private fun stubMapper(cardInfo: CardInfo) {
         every {
             mapper.mapToEntity(any())
-        }returns cardInfo
+        } returns cardInfo
     }
 }

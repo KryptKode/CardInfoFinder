@@ -32,7 +32,6 @@ class SeenWalkThroughUseCaseTest {
         sut = SeenWalkThroughUseCase(keyValueStore, dispatchers)
     }
 
-
     @Test
     fun `setSeenWalkthrough calls KeyValueStore with passed parameter`() = coroutineRule.runBlockingTest {
         stubKeyValueStore()
@@ -57,7 +56,6 @@ class SeenWalkThroughUseCaseTest {
         }
     }
 
-
     @Test
     fun `seenWalkthrough returns data`() = coroutineRule.runBlockingTest {
         stubKeyValueStore(true)
@@ -79,5 +77,4 @@ class SeenWalkThroughUseCaseTest {
             keyValueStore.seenWalkthrough
         } returns flowOf(value)
     }
-
 }

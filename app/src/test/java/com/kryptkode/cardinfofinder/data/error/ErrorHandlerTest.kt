@@ -23,7 +23,6 @@ class ErrorHandlerTest {
         stubErrorMessage("")
     }
 
-
     @Test
     fun `getErrorMessage with ConnectException returns error message`() {
         val message = "Error occurred"
@@ -44,7 +43,6 @@ class ErrorHandlerTest {
             stringResource.getString(R.string.connect_exception)
         }
     }
-
 
     @Test
     fun `getErrorMessage with UnknownHostException returns error message`() {
@@ -114,5 +112,4 @@ class ErrorHandlerTest {
             stringResource.getString(any())
         } returns message
     }
-
 }

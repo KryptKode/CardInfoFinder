@@ -25,7 +25,6 @@ class BinListServiceTest {
         sut = makeTestApiService(mockWebServer)
     }
 
-
     @Test
     fun `getCardInfo is successful`() = runBlocking {
 
@@ -38,23 +37,21 @@ class BinListServiceTest {
         assertThat(result.brand).isEqualTo("Debit")
     }
 
-
     @Test
     @Throws(HttpException::class)
     fun `getCardInfo fails with network errors`() = runBlocking {
 
         mockHttpResponse("binlist-response.json", HttpURLConnection.HTTP_GATEWAY_TIMEOUT)
 
-        val exception  = try{
+        val exception = try {
             sut.getCardInfo("12344")
             null
-        }catch (e: Throwable){
+        } catch (e: Throwable) {
             e
         }
         assertThat(exception).isInstanceOf(HttpException::class.java)
         assertThat(exception?.message).isEqualTo("HTTP 504 Server Error")
     }
-
 
     @After
     fun tearDown() {
@@ -66,5 +63,4 @@ class BinListServiceTest {
             .setResponseCode(responseCode)
             .setBody(getResourceAsString(fileName))
     )
-
 }

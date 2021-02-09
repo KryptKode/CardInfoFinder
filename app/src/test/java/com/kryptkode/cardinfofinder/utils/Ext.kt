@@ -1,6 +1,5 @@
 package com.kryptkode.cardinfofinder.utils
 
-
 import com.google.common.io.Resources.getResource
 import com.kryptkode.cardinfofinder.data.service.BinListService
 import com.squareup.moshi.Moshi
