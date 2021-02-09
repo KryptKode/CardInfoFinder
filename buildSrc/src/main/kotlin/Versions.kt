@@ -1,3 +1,4 @@
+import kotlin.String
 import org.gradle.plugin.use.PluginDependenciesSpec
 import org.gradle.plugin.use.PluginDependencySpec
 
@@ -21,11 +22,15 @@ object Versions {
 
     const val com_squareup_okhttp3: String = "4.9.0" // available: "4.9.1"
 
+    const val org_jetbrains_kotlin: String = "1.4.30"
+
     const val androidx_navigation: String = "2.3.3"
 
     const val androidx_lifecycle: String = "2.2.0"
 
     const val com_squareup_moshi: String = "1.11.0"
+
+    const val androidx_fragment: String = "1.3.0-rc02"
 
     const val com_google_dagger: String = "2.31.2-alpha"
 
@@ -47,21 +52,11 @@ object Versions {
 
     const val play_services_mlkit_text_recognition: String = "16.1.3"
 
-    const val kotlin_annotation_processing_gradle: String = "1.4.30" // available: "1.4.30"
-
-    const val kotlin_parcelize_compiler: String = "1.4.30" // available: "1.4.30"
-
-    const val kotlin_parcelize_runtime: String = "1.4.30" // available: "1.4.30"
-
     const val datastore_preferences: String = "1.0.0-alpha06"
-
-    const val kotlin_gradle_plugin: String = "1.4.30"
 
     const val leakcanary_android: String = "2.6"
 
     const val swiperefreshlayout: String = "1.2.0-alpha01"
-
-    const val kotlin_test_junit: String = "1.4.30"
 
     const val pageindicatorview: String = "1.0.3"
 
@@ -69,23 +64,19 @@ object Versions {
 
     const val constraintlayout: String = "2.0.4"
 
-    const val fragment_testing: String = "1.3.0-rc02"
-
     const val camera_camera2: String = "1.1.0-alpha01"
 
     const val vectordrawable: String = "1.1.0"
 
-    const val kotlin_stdlib: String = "1.4.30"
-
     const val core_testing: String = "1.1.1"
-
-    const val fragment_ktx: String = "1.3.0-rc02"
 
     const val camera_view: String = "1.0.0-alpha21"
 
-    const val lint_gradle: String = "27.1.1" // available: "27.1.2"
+    const val lint_gradle: String = "27.1.2"
 
-    const val viewbinding: String = "4.1.2" // available: "4.1.2"
+    const val robolectric: String = "4.5" // available: "4.5.1"
+
+    const val viewbinding: String = "4.1.2"
 
     const val appcompat: String = "1.2.0"
 
@@ -95,11 +86,13 @@ object Versions {
 
     const val multidex: String = "2.0.1"
 
-    const val ktlint: String = "0.40.0" // available: "0.40.0"
+    const val turbine: String = "0.3.0"
+
+    const val ktlint: String = "0.38.1" // available: "0.40.0"
 
     const val timber: String = "4.7.1"
 
-    const val aapt2: String = "4.1.1-6503028" // available: "4.1.2-6503028"
+    const val aapt2: String = "4.1.2-6503028"
 
     const val truth: String = "1.1.2"
 

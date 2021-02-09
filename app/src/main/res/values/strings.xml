@@ -55,4 +55,12 @@
     <string name="scan_card_error_msg">Cannot get card number. Please try again</string>
     <string name="scan_card_camera_error_msg">Could not get card number due to camera error. Please try again</string>
     <string name="scan_card_analyser_error_msg">Could not get card number. Failure to analyse image. Please try again</string>
+    <string name="walkthrough_title_1">Get card info</string>
+    <string name="walkthrough_title_2">Enter manually</string>
+    <string name="walkthrough_title_3">Scan OCR</string>
+    <string name="walkthrough_title_4">View card details</string>
+    <string name="walkthrough_subtitle_1">See your card info in an instant</string>
+    <string name="walkthrough_subtitle_2">See your card info in an instant</string>
+    <string name="walkthrough_subtitle_3">See your card info in an instant</string>
+    <string name="walkthrough_subtitle_4">See your card info in an instant</string>
 </resources>

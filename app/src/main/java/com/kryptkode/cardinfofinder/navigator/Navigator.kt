@@ -1,7 +1,6 @@
 package com.kryptkode.cardinfofinder.navigator
 
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.navigation.NavController
 import com.kryptkode.cardinfofinder.R
 import com.kryptkode.cardinfofinder.data.usecase.SeenWalkThroughUseCase
@@ -10,7 +9,7 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.first
 
 class Navigator @Inject constructor(
-    private val activity: AppCompatActivity,
+    private val lifecycleCoroutineScope: LifecycleCoroutineScope,
     private val navControllerProvider: NavControllerProvider,
     private val seenWalkThroughUseCase: SeenWalkThroughUseCase
 ) {
@@ -19,7 +18,7 @@ class Navigator @Inject constructor(
         get() = navControllerProvider.getNavController()
 
     fun setup() {
-        activity.lifecycleScope.launchWhenCreated {
+        lifecycleCoroutineScope.launchWhenCreated {
             val graph = navController.navInflater.inflate(R.navigation.main_nav)
             val seenWalkthrough = seenWalkThroughUseCase.seenWalkthrough().first()
             graph.startDestination = when {
@@ -39,7 +38,7 @@ class Navigator @Inject constructor(
     }
 
     fun walkThroughToNext() {
-        activity.lifecycleScope.launchWhenCreated {
+        lifecycleCoroutineScope.launchWhenCreated {
             seenWalkThroughUseCase.setSeenWalkthrough(true)
             navController.navigate(R.id.action_walkThroughFragment_to_cardInputModeFragment)
         }
