@@ -11,14 +11,14 @@ A simple android application fetches details of a debit or credit card by the ca
 
 ### Outline
 
-- [App Walkthrough](https://github.com/KryptKode/CardInfoFinder/README.md#app-walkthrough)
-- [App Installation](https://github.com/KryptKode/CardInfoFinder/README.md#app-installation)
-- [Building source](https://github.com/KryptKode/CardInfoFinder/README.md#building-source)
-- [Top features](https://github.com/KryptKode/CardInfoFinder/README.md#top-features)
-- [Architecture](https://github.com/KryptKode/CardInfoFinder/README.md#architecture)
-- [Libraries](https://github.com/KryptKode/CardInfoFinder/README.md#libraries)
-- [Testing](https://github.com/KryptKode/CardInfoFinder/README.md#testing)
-- [Extras](https://github.com/KryptKode/CardInfoFinder/README.md#extras)
+- [App Walkthrough](https://github.com/KryptKode/CardInfoFinder#app-walkthrough)
+- [App Installation](https://github.com/KryptKode/CardInfoFinder#app-installation)
+- [Building source](https://github.com/KryptKode/CardInfoFinder#building-source)
+- [Top features](https://github.com/KryptKode/CardInfoFinder#top-features)
+- [Architecture](https://github.com/KryptKode/CardInfoFinder#architecture)
+- [Libraries](https://github.com/KryptKode/CardInfoFinder#libraries)
+- [Testing](https://github.com/KryptKode/CardInfoFinder#testing)
+- [Extras](https://github.com/KryptKode/CardInfoFinder#extras)
 
 ### App Walkthrough
 
