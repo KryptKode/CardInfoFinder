@@ -42,7 +42,7 @@ object Versions {
 
     const val androidx_test_ext_junit: String = "1.1.2"
 
-    const val androidx_test_runner: String = "1.3.1-alpha03"
+    const val androidx_test_runner: String = "1.3.0"
 
     const val androidx_test_rules: String = "1.3.0"
 
