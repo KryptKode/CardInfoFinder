@@ -1,5 +1,6 @@
 package com.kryptkode.cardinfofinder.navigator
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.navigation.NavController
 import com.kryptkode.cardinfofinder.R
@@ -14,7 +15,8 @@ class Navigator @Inject constructor(
     private val seenWalkThroughUseCase: SeenWalkThroughUseCase
 ) {
 
-    private val navController: NavController
+    @VisibleForTesting
+    val navController: NavController
         get() = navControllerProvider.getNavController()
 
     fun setup() {

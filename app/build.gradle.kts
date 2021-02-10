@@ -20,7 +20,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.kryptkode.cardinfofinder.CustomTestRunner"
     }
 
     buildTypes.forEach {
@@ -92,7 +92,7 @@ dependencies {
     implementation(Libs.cardscan_ui)
     implementation(Libs.tensorflow_lite)
 
-    debugImplementation(Libs.leakcanary_android)
+//    debugImplementation(Libs.leakcanary_android)
 
     implementation(Libs.play_services_mlkit_text_recognition)
     implementation(Libs.camera_camera2)
@@ -132,6 +132,7 @@ dependencies {
     androidTestImplementation(Libs.mockwebserver)
     androidTestImplementation(Libs.androidx_test_ext_junit)
     androidTestImplementation(Libs.mockk)
+    androidTestImplementation(Libs.navigation_testing)
     androidTestImplementation(Libs.mockk_android)
     androidTestImplementation(Libs.truth)
     androidTestImplementation(Libs.hilt_android_testing)
